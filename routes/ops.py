@@ -13,7 +13,7 @@ ALLOWED_EXTENSIONS = {'pptx', 'docx', 'xlsx'}
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 
-# ✅ JWT Authentication Decorator
+
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -34,12 +34,12 @@ def token_required(f):
     return decorated
 
 
-# ✅ File Extension Checker
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-# ✅ Upload Route
+
 @ops.route('/ops/upload', methods=['POST'])
 @token_required
 def upload_file():
